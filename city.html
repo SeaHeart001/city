@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <select id='provinces'>
+      <option value="">请选择省级单位</option>
+  </select>
+  <select id='cities'>
+      <option value="">请选择市级单位</option>
+  </select>
+  <select id='counties'>
+      <option value="">请选择县级单位</option>
+  </select>
+<script src="./js/jquery-1.12.4.js"></script>
+<script>
+    $(function () {
+        var $provinces = $('#provinces')
+        var $cities = $('#cities')
+        var $counties = $('#counties')
+        //获取省级数据
+        $.ajax({
+                method: 'GET',
+                url: 'http://localhost:3000/provinces',
+                jsonType: 'json',
+                success: function (provinces) {
+                    provinces.forEach(function (item1, index) {
+                        //console.log(item)
+                        var $optionNode = $('<option value="'+ item1.id +'">'+ item1.province +'</option>')
+                        $provinces.append($optionNode)
+                    });
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            })
+        //获取市级数据  
+        $.ajax({
+                method: 'GET',
+                url: 'http://localhost:3000/cities',
+                jsonType: 'json',
+                success: function (cities) {
+                    $provinces.change(function () {
+                        $cities.children().not(':first').remove()//每次选择发生变化时，删除市除了第一个所有的option
+                        $counties.children().not(':first').remove()//每次选择发生变化时，删除县除了第一个所有的option
+                        var $selectOption1 = $('#provinces option:selected')//获取选中的option
+                        //console.log($selectOption1.val())//获取选中的option的id，通过id=parent筛选数据
+                        mycities = cities.filter(function (item, index) {//通过id=parent筛选数据，注意直辖市
+                        return item.parent === $selectOption1.val() || item.id === $selectOption1.val()
+                        });
+                        //console.log(mycities)
+                        mycities.forEach(function (item2, index) {
+                            var $optionNode = $('<option value="'+ item2.id +'">'+ item2.city +'</option>')
+                            $cities.append($optionNode)
+                        });
+                    })
+                    
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+            })
+        //获取县级数据
+        $.ajax({
+                method: 'GET',
+                url: 'http://localhost:3000/counties',
+                jsonType: 'json',
+                success: function (counties) {
+                    $cities.change(function () {
+                        $counties.children().not(':first').remove()//每次选择发生变化时，删除县除了第一个所有的option
+                        var $selectOption1 = $('#cities option:selected')//获取选中的option
+                        console.log($selectOption1.val())//获取选中的option的id，通过id=parent筛选数据
+                        mycounties = counties.filter(function (item, index) {//通过id=parent筛选数据
+                        return item.parent === $selectOption1.val()
+                        });
+                        console.log(mycounties)
+                        mycounties.forEach(function (item2, index) {
+                            var $optionNode = $('<option value="'+ item2.id +'">'+ item2.county +'</option>')
+                            $counties.append($optionNode)
+                        });
+                    })
+                    
+                },
+                error: function (error) {
+                    console.log(error);
+                }
+        })
+    })
+    
+    
+</script>
+</body>
+</html>

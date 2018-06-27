@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+     //数据
+     //对象：保存多个数据的容器
+     //1.
+    //  var a = {m:2};
+    //  var b = a;
+    //  b.m = 3;
+    //  console.log(a.m); //3
+    //  function fun(a) {
+    //      a.m = 4
+    //  }
+    //  fun(b)
+    //  console.log(a.m, b.m) //4 4
+    //2.
+    //  var a = {m:2};
+    //  var b = a;
+    //  a={x:3}
+    //  console.log(b.m, b.x)//2 undefined
+    //  function fun(a) {
+    //      a = {m: 4}
+    //  }
+    //  fun(a)
+    //  console.log(a.m)//undefined
+    //3.
+    //  var a = {m:3}
+    //  var b = {m:3}
+    //  b.m = 4
+    //  console.log(a.m,b.m)//3 4
+    //4.
+    // var a=3;
+    // function fun(a) {
+    //     a = a+1
+    // }
+    // fun(a)
+    // console.log(a) //3
+    //函数中的a均为函数局部变量
+
+    // 内存
+    // var a = 1
+    // a = null  // 全局变量运行完成后不消失
+
+    // var obj = {};
+    // obj = undefined  // 成为垃圾对象回收
+    //局部变量函数执行完自动释放，
+    //对象成为垃圾对象后回收
+    // var a = 3
+    // function fun() {
+    //     a = 4
+    // }
+    // console.log(fun()) //undefined
+    // 函数没有返回值
+
+   //函数提升变量提升
+   //1.
+   // if(!a in window){
+    //     var a = 1
+    // }
+    // console.log(a) //undefined
+     //2.函数变量同名
+    //  function a() { 
+    //  }
+    //  var a
+    // console.log(a) // function a
+    //............
+    // function a() {   
+    //  }
+    //  var a = 1
+    //   console.log(a) // 1
+
+    //变量先提升,相当于
+    // var a;
+    // function a() { //覆盖a为函数
+        
+    // }
+    // a=1 //覆盖a为1
+    var num = Math.random()*9
+    var num1 = Math.floor(num)
+    console.log(num1)
+     </script>
+</body>
+</html>
