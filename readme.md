@@ -1,5 +1,5 @@
-ÓÃµ½ÁËjson-serverÄ£ÄâÊı¾İ
+ç”¨åˆ°äº†json-serveræ¨¡æ‹Ÿæ•°æ®
 npm install json-server -g
-¸ùÂ·¾¶ÏÂ´´½¨Ò»¸ödb.jsonÎÄ¼ş£¬Ğ´jsonÊı¾İ
+æ ¹è·¯å¾„ä¸‹åˆ›å»ºä¸€ä¸ªdb.jsonæ–‡ä»¶ï¼Œå†™jsonæ•°æ®
 json-server --watch db.json
-·şÎñÆ÷»áÌá¹©json¶ÔÓ¦µÄ½Ó¿Ú# city
+æœåŠ¡å™¨ä¼šæä¾›jsonå¯¹åº”çš„æ¥å£
